@@ -464,7 +464,7 @@ function crawl_ophim_movies_handle_nguonc($url, $ophim_id, $ophim_update_time, $
 							'list_episode' 	=> [],
 							'msg' 					=> 'Nothing needs updating!',
 							'wait'					=> false,
-							'schedule_code' => SCHEDULE_CRAWLER_NGUONC_TYPE_NOTHING
+							'schedule_code' => SCHEDULE_CRAWLER_TYPE_NOTHING
 						);
 						return json_encode($result);
 					}
@@ -499,7 +499,7 @@ function crawl_ophim_movies_handle_nguonc($url, $ophim_id, $ophim_update_time, $
 						'data'					=> $data,
 						'list_episode' 	=> $list_episode,
 						'wait'					=> true,
-						'schedule_code' => SCHEDULE_CRAWLER_NGUONC_TYPE_UPDATE
+						'schedule_code' => SCHEDULE_CRAWLER_TYPE_UPDATE
 					);
 					wp_update_post($post);
 					return json_encode($result);
@@ -519,7 +519,7 @@ function crawl_ophim_movies_handle_nguonc($url, $ophim_id, $ophim_update_time, $
 				'list_episode' 	=> null,
 				'msg' 					=> "Lọc bỏ qua",
 				'wait'					=> false,
-				'schedule_code' => SCHEDULE_CRAWLER_NGUONC_TYPE_FILTER
+				'schedule_code' => SCHEDULE_CRAWLER_TYPE_FILTER
 			);
 			return json_encode($result);
 		}
@@ -532,7 +532,7 @@ function crawl_ophim_movies_handle_nguonc($url, $ophim_id, $ophim_update_time, $
 			'data'					=> $data,
 			'list_episode' 	=> $list_episode,
 			'wait'					=> true,
-			'schedule_code' => SCHEDULE_CRAWLER_NGUONC_TYPE_INSERT
+			'schedule_code' => SCHEDULE_CRAWLER_TYPE_INSERT
 		);
 		return json_encode($result);
   } catch (Exception $e) {
@@ -543,7 +543,7 @@ function crawl_ophim_movies_handle_nguonc($url, $ophim_id, $ophim_update_time, $
 			'list_episode' 	=> null,
 			'msg' 					=> $e->getMessage(),
 			'wait'					=> false,
-			'schedule_code' => SCHEDULE_CRAWLER_NGUONC_TYPE_ERROR
+			'schedule_code' => SCHEDULE_CRAWLER_TYPE_ERROR
 		);
 		return json_encode($result);
   }

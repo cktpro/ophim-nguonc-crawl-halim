@@ -1,4 +1,5 @@
 <?php
+define('API_NGUONC', 'https://phim.nguonc.com');
 define('API_DOMAIN', 'https://ophim1.com');
 define('CRAWL_OPHIM_OPTION_SETTINGS', 'crawl_ophim_schedule_settings');
 define('CRAWL_OPHIM_OPTION_RUNNING', 'crawl_ophim_schedule_running');
