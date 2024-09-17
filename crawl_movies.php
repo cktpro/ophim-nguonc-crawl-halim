@@ -743,6 +743,7 @@ function create_data_nguonc($sourcePage, $url, $ophim_id, $ophim_update_time, $f
 	array_push($arrTags, $sourcePage["movie"]["name"]);
 	if($sourcePage["movie"]["name"] != $sourcePage["movie"]["original_name"]) array_push($arrTags, $sourcePage["movie"]["original_name"]);
 	$status = getStatusNguonc($sourcePage["movie"]["current_episode"]);
+	$content= sprintf('%s là một bộ phim %s  %s được sản xuất vào năm %s. %s',$sourcePage["movie"]["name"],$sourcePage["movie"]["category"]["2"]["list"][0]["name"],$sourcePage["movie"]["category"]["4"]["list"][0]["name"],$sourcePage["movie"]["category"]["3"]["list"][0]["name"],preg_replace('/\\r?\\n/s', '', $sourcePage["movie"]["description"]));
 	$data = array(
 		'crawl_filter'						=> false,
 		'fetch_url' 							=> $url,
@@ -756,7 +757,8 @@ function create_data_nguonc($sourcePage, $url, $ophim_id, $ophim_update_time, $f
 		'episode'									=> $sourcePage["movie"]["current_episode"],
 		'total_episode'						=> $sourcePage["movie"]["total_episodes"],
 		'tags'      							=> $arrTags,
-		'content'   							=> preg_replace('/\\r?\\n/s', '', $sourcePage["movie"]["description"]),
+		// 'content'   							=> preg_replace('/\\r?\\n/s', '', $sourcePage["movie"]["description"]),
+		'content'   							=> $content,
 		'actor'										=> implode(',', $sourcePage["movie"]["casts"]),
 		'director'								=> implode(',', $sourcePage["movie"]["director"]),
 		'country'									=> $arrCountry,
