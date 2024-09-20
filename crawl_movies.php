@@ -431,7 +431,7 @@ function crawl_ophim_movies_handle_nguonc($url, $ophim_id, $ophim_update_time, $
 			'meta_query' => array(
 				array(
 					'key' => '_halim_metabox_options',
-					'value' => $ophim_id,
+					'value' => $url,
 					'compare' => 'LIKE'
 				)
 			)
@@ -447,7 +447,7 @@ function crawl_ophim_movies_handle_nguonc($url, $ophim_id, $ophim_update_time, $
 				'meta_query' => array(
 					array(
 						'key' => '_halim_metabox_options',
-						'value' => $ophim_id,
+						'value' => $url,
 						'compare' => 'LIKE'
 					)
 				)
@@ -479,6 +479,7 @@ function crawl_ophim_movies_handle_nguonc($url, $ophim_id, $ophim_update_time, $
 					// Re-Update Movies Info
 					$formality 																					= ($data['type'] == 'tv_series') ? 'tv_series' : 'single_movies';
 					$_halim_metabox_options["halim_movie_formality"] 		= $formality;
+					$_halim_metabox_options["fetch_ophim_id"] 		= $data['fetch_ophim_id'];
 					$_halim_metabox_options["halim_movie_status"] 			= $data['status'];
 					$_halim_metabox_options["fetch_info_url"] 					= $data['fetch_url'];
 					$_halim_metabox_options["fetch_ophim_update_time"] 	= $data['fetch_ophim_update_time'];
