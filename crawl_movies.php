@@ -372,9 +372,8 @@ function crawl_ophim_page_handle_nguonc($url)
 			// ===================================================================================================================================
 			// Cần chỉnh sửa
 			$url= "https://phim.nguonc.com/api/film/{$item->slug}";
-			$sourcePage 			=  HALIMHelper::cURL($url);
-			$item_detail      = json_decode($sourcePage);
-			array_push($listMovies, "https://phim.nguonc.com/api/film/{$item->slug}|{$item_detail->movie->id}|{$item->modified}|{$item->name}|{$item->original_name}|{$item_detail ->movie->category->{3}->list[0]->name}");
+			
+			array_push($listMovies, "https://phim.nguonc.com/api/film/{$item->slug}|no_id|{$item->modified}|{$item->name}|{$item->original_name}|no_year");
 		}
 		return join("\n", $listMovies);
 	}
@@ -408,11 +407,15 @@ function crawl_ophim_movies_nguonc()
 {
 	$data_post 					= $_POST['url'];
 	$url 								= explode('|', $data_post)[0];
-	$ophim_id 					= explode('|', $data_post)[1];
+	$sourcePage 			=  HALIMHelper::cURL($url);
+	$item_detail      = json_decode($sourcePage);
+// 	$ophim_id 					= explode('|', $data_post)[1];
+	$ophim_id 					= $item_detail->movie->id;
 	$ophim_update_time 	= explode('|', $data_post)[2];
 	$title 							= explode('|', $data_post)[3];
 	$org_title 					= explode('|', $data_post)[4];
-	$year 							= explode('|', $data_post)[5];
+// 	$year 							= explode('|', $data_post)[5];
+	$year 							= $item_detail ->movie->category->{3}->list[0]->name;
 	
 	$filterType 				= $_POST['filterType'] ?: [];
 	$filterCategory 		= $_POST['filterCategory'] ?: [];
@@ -1086,6 +1089,9 @@ function getStatusNguonc($status) {
 	if (strpos($newStatus, 'tap')!==false) {
 		$hl_status = "ongoing";
 	} elseif (strpos($newStatus, 'hoan')!==false) {
+		$hl_status = "completed";
+	}
+	elseif (strpos($newStatus, 'full')!==false) {
 		$hl_status = "completed";
 	}else{
 		$hl_status = "is_trailer";
