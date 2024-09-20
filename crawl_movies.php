@@ -1086,14 +1086,12 @@ function getStatus($status) {
 function getStatusNguonc($status) {
 	$newStatus= slugify($status,'_');
 	$hl_status = "completed";
-	if (strpos($newStatus, 'tap')!==false) {
+	if (strpos($newStatus, 'tap')!==false || strpos($newStatus, 'dang')!==false) {
 		$hl_status = "ongoing";
-	} elseif (strpos($newStatus, 'hoan')!==false) {
+	} elseif (strpos($newStatus, 'hoan')!==false || strpos($newStatus, 'full')!==false) {
 		$hl_status = "completed";
 	}
-	elseif (strpos($newStatus, 'full')!==false) {
-		$hl_status = "completed";
-	}else{
+	else{
 		$hl_status = "is_trailer";
 	}
 	return $hl_status;
