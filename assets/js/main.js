@@ -102,7 +102,7 @@ jQuery(function ($) {
 
   // function crawl_page_callback_nguonc
   const crawl_page_callback_nguonc = (currentPage) => {
-     var urlPageCrawl = `https://phim.nguonc.com/api/films/phim-moi-cap-nhat?page=${currentPage}`;
+     var urlPageCrawl = `https://phim.nguonc.com/api/films/the-loai/hoat-hinh?page=${currentPage}`;
     if (currentPage < inputPageTo.val()) {
       divMsgText.html("Done!");
       buttonCrawlMovies.show(300);
